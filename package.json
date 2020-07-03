@@ -1,0 +1,25 @@
+{
+  "name": "work",
+  "version": "1.0.0",
+  "description": "freelance site",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js",
+    "run": "nodemon main.js"
+    
+  },
+  "keywords": [
+    "nodejs",
+    "js",
+    "hbs"
+  ],
+  "author": "fgin69",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^4.0.4"
+  }
+}
