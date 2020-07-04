@@ -12,9 +12,14 @@ module.exports = {
 		})
 	},
 	home(req, res){
-		res.render('index', {
+		res.render('home', {
 			title: 'Главная страница',
 			isHome: true
 		});
+	},
+	 async addproject(req,res) {
+		try{
+			
+		}catch (e) {console.log(e)}
 	}
 }
