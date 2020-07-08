@@ -1,14 +1,15 @@
 const express = require('express');
 const app = express();
-const PORT = process.env.PORT || 3000;
 const mongoose = require('mongoose');
 const mongoconfig = require('config');
 const database = require('./custom/db') ()
-
+const session = require('express-session')
+const MonsgoUsers = require('connect-mongodb-session') (session)
 const path = require('path');
 const exphbs = require('express-handlebars');
-const profileRoutes = require('./routes/profile')
 const projectsRoutes = require('./routes/projects');
+const authRoutes = require('./routes/auth');
+const varMiddleware = require('./middleware/variables')
 
 const hbs = exphbs.create({
 	defaultLayout: "main",
@@ -16,27 +17,27 @@ const hbs = exphbs.create({
 	hbsHelpers: require('./custom/hbs-helpers')
 })
 
+const store = new MonsgoUsers({
+	collection: 'sessions',
+	uri: mongoconfig.mongo
+})
 app.use(express.static(path.join(__dirname,'public')))
+app.use(express.urlencoded({extended: true}));
+app.use(session({
+	secret: mongoconfig.session_key,
+	resave: false,
+	saveUninitialized: false,
+	store
+}))
+app.use(varMiddleware)
 
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 app.set('views', 'views');
 
-app.use(profileRoutes);
+
 app.use(projectsRoutes);
-
-
-
-
-
-
-app.get('/login', (req,res) => {
-	res.render('auth/login', {
-		title: 'Войти',
-		isLogin: true
-	})
-})
-
+app.use(authRoutes);
 
 
 app.listen(mongoconfig.port, () => {

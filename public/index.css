@@ -43,3 +43,11 @@ body, html{
 	justify-content: center;
 	text-align: center;
 }
+
+.register-content {
+	display: none;
+}
+
+.login-content {
+	display: none;
+}

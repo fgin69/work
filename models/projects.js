@@ -16,10 +16,7 @@ const projects = new Schema ({
 			type: Schema.Types.ObjectId,
 			ref: 'employer'
 		},
-		workerId: {
-			type: Schema.Types.ObjectId,
-			ref: 'worker'
-		},
 })
+
 
 module.exports = model('projects', projects)

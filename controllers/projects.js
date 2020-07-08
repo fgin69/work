@@ -1,3 +1,4 @@
+const auth = require('../middleware/auth')
 module.exports = {
 	projects(req,res)  {
 		res.render('projects', {
@@ -16,6 +17,12 @@ module.exports = {
 			title: 'Главная страница',
 			isHome: true
 		});
+	},
+	profile(req,res){
+		res.render('profile', {
+			title: 'Профиль: ',
+			isProfile: true
+		})
 	},
 	 async addproject(req,res) {
 		try{

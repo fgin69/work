@@ -11,6 +11,7 @@ const worker = new Schema ({
 		type: String,
 		required: true
 	},
+	avatarurl: String,
 })
 
 module.exports = model('worker', worker)
